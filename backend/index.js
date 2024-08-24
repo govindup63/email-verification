@@ -42,7 +42,15 @@ transporter.sendMail(mailOptions, function(error, info){
 });
   res.send("your email is " + email + "\n and your otp is " + otp);
 });
-
+app.post("/checkOtp",(req,res)=>{
+  const {email, getotp}= req.body;
+  if(getotp==otp){
+    res.send("you are verified")
+  }
+  else{
+    res.send("access denied")
+  }
+})
 app.listen(port, () => {
   console.log(`listening of port ${port}`);
 });
