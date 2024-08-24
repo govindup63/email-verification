@@ -43,6 +43,8 @@ app.post("/registerEmail", (req, res) => {
   });
   res.send("your email is " + email + "\n and your otp is " + otp);
 });
+
+
 app.post("/checkOtp", (req, res) => {
   const { email, getotp } = req.body;
   if (getotp == otp) {
@@ -51,6 +53,8 @@ app.post("/checkOtp", (req, res) => {
     res.send("access denied");
   }
 });
+
+
 app.listen(port, () => {
   console.log(`listening of port ${port}`);
 });
