@@ -30,8 +30,16 @@ app.post("/registerEmail", (req, res) => {
     from: 'projectreminder6323@gmail.com',
     to: email,
     subject: 'Otp for your request',
-    text: `your otp is otp`
+    text: `your otp is ${otp}`
 };
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+      console.error('Error sending email reminder:', error);
+      return res.status(500).json({ message: 'Error sending email reminder' });
+  }
+  console.log('Email reminder sent:', info.response);
+  return res.status(200).json({ message: 'Email reminder sent successfully' });
+});
   res.send("your email is " + email + "\n and your otp is " + otp);
 });
 
